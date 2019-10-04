@@ -4,7 +4,7 @@ from origin.api import get_games
 
 
 games = get_games(
-    filter_query="platform:pc-download",
+    filter_query="platform:pc-download,gameType:basegame",
     facet_field=(
         "subscriptionGroup,genre,gameType,availability,rating,players,language,platform,franchise,"
         "publisher,developer,price"
@@ -16,7 +16,7 @@ num_games = games.get("numFound") - 1
 choice = random.randint(0, num_games)
 
 games = get_games(
-    filter_query="platform:pc-download",
+    filter_query="platform:pc-download,gameType:basegame",
     facet_field=(
         "subscriptionGroup,genre,gameType,availability,rating,players,language,platform,franchise,"
         "publisher,developer,price"
