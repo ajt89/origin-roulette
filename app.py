@@ -22,7 +22,8 @@ store_results = query_store(
         "publisher,developer,price"
     ),
     start=choice,
-    rows=1,
+    rows=8,
 )
 
-print(store_results.get("games").get("game"))
+games = store_results.get("games").get("game")
+print(random.choice(games))
