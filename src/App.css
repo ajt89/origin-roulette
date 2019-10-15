@@ -1,16 +1,8 @@
-.origin-games {
-    margin: auto;
-    width: 50%;
-}
-
 .game-title {
     text-align: center;
 }
 
 .game-image {
-    object-fit: cover;
-    width: 800px;
-    height: 800px;
     display: block;
     margin-left: auto;
     margin-right: auto;
