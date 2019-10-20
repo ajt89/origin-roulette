@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import queryStore from './API.js';
+import './OriginGames.css';
 
 class OriginGames extends Component {
     state = {
@@ -7,10 +8,6 @@ class OriginGames extends Component {
     };
 
     baseUrl = 'https://www.origin.com/usa/en-us/store'
-
-    componentDidMount() {
-        this.getRandomGame()
-    }
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.refresh !== prevState.refresh) {
@@ -50,12 +47,14 @@ class OriginGames extends Component {
 
     render() {
         return (
-            <div>
+            <div className='origin-games'>
                 {this.state.games.map((game, i) => (
-                    <div className='origin-games' key={i}>
+                    <div className='origin-game' key={i}>
                         <div className='game-body'>
-                            <h1 className='game-title'>{game.gameName}</h1>
-                            <a href={`https://www.origin.com/usa/en-us/store${game.path}`}><img src={game.image} className='game-image' alt={`${game.gameName} cover art`}></img></a>
+                            <br></br>
+                            <h2 className='game-title'>{game.gameName}</h2>
+                            <a href={`https://www.origin.com/usa/en-us/store${game.path}`}><img className='game-cover' src={game.image} alt={`${game.gameName} cover art`}></img></a>
+                            <br></br>
                         </div>
                     </div>
                 ))}
