@@ -17,6 +17,12 @@
     margin-right: auto;
 }
 
+.genre-dropdown {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 body {
     background-color: rgb(169, 169, 169);
 }

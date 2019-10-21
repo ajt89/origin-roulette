@@ -1,43 +1,62 @@
 
 import React, { Component } from 'react';
+import Select from 'react-select';
 import OriginGames from './origin/OriginGames.js'
 import './App.css'
 
+const gameGenres = [
+  {value: 'action', label: 'Action'},
+  {value: 'adventure', label: 'Adventure'},
+  {value: 'arcade', label: 'Arcade'},
+  {value: 'casual', label: 'Casual'},
+  {value: 'family', label: 'Family'},
+  {value: 'first-person', label: 'First Person'},
+  {value: 'horror', label: 'Horror'},
+  {value: 'indie', label: 'Indie'},
+  {value: 'mmo', label: 'MMO'},
+  {value: 'platformer', label: 'Platformer'},
+  {value: 'role-playing', label: 'Role Playing'},
+  {value: 'sci-fi', label: 'Sci-Fi'},
+  {value: 'shooter', label: 'Shooter'},
+  {value: 'simulation', label: 'Simulation'},
+  {value: 'sports', label: 'Sports'},
+  {value: 'strategy', label: 'Strategy'},
+  {value: 'third-person', label: 'Third Person'},
+]
+
 class App extends Component {
-  state = {}
+  state = {
+    selectedOption: null,
+    refreshWheel: null,
+  }
+
+  handleChange = selectedOption => {
+    this.setState(
+      { selectedOption },
+      () => console.log(`Option selected:`, this.state.selectedOption)
+    )
+  }
 
   spinTheWheel = () =>
     this.setState({ refreshWheel: !this.state.refreshWheel })
 
   render() {
+    const { selectedOption } = this.state;
     return (
       <div className='App'>
         <header className='App-header'>
           <br></br>
           <h1 className='home-page-title'>Origin Roulette</h1>
-          <OriginGames refresh={this.state.refreshWheel}></OriginGames>
+          <OriginGames refresh={this.state}></OriginGames>
           <br></br>
           <div className='inputs'>
             <button className='wheel-button' onClick={this.spinTheWheel}>Spin the Wheel!</button>
-            <select className='genre-dropdown'>
-              <option value='action'>Action</option>
-              <option value='adventure'>Adventure</option>
-              <option value='arcade'>Arcade</option>
-              <option value='casual'>Casual</option>
-              <option value='family'>Family</option>
-              <option value='first-person'>First-Person</option>
-              <option value='horror'>Horror</option>
-              <option value='indie'>Indie</option>
-              <option value='mmo'>MMO</option>
-              <option value='platformer'>Platformer</option>
-              <option value='role-playing'>Role-Playing</option>
-              <option value='sci-fi'>Sci-Fi</option>
-              <option value='shooter'>Shooter</option>
-              <option value='simulation'>Simulation</option>
-              <option value='sports'>Sports</option>
-              <option value='strategy'>Strategy</option>
-              <option value='third-person'>Third Person</option>
-            </select>
+            <br></br>
+            <Select
+              value={selectedOption}
+              onChange={this.handleChange}
+              options={gameGenres}
+            />
           </div>
           <br></br>
         </header>
