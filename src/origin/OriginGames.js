@@ -11,29 +11,35 @@ class OriginGames extends Component {
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.refresh !== prevState.refresh) {
-            return { refresh: nextProps.refresh }
+            return { refresh: nextProps.refresh.refreshWheel }
         }
         else return null;
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.refresh !== this.props.refresh) {
-            this.getRandomGame()
+        if (prevProps.refresh.refreshWheel !== this.props.refresh.refreshWheel) {
+            this.getRandomGame();
             this.setState({ refresh: 'refreshed' })
         }
     }
 
     getRandomGame() {
+        let genreQuery = '';
+        if (this.props.refresh.selectedOption) {
+            genreQuery = `,genre:${this.props.refresh.selectedOption.value}`;
+        }
         let searchTerm = '';
-        let filterQuery = 'platform:pc-download,gameType:basegame';
+        let filterQuery = `platform:pc-download,gameType:basegame${genreQuery}`;
         let facetField = 'subscriptionGroup,genre,gameType,availability,rating,players,language,platform,franchise,publisher,developer,price';
         let sort = '';
         let start = 0;
         let rows = 1;
         let isGDP = true
+        console.log(filterQuery);
         queryStore(searchTerm, filterQuery, facetField, sort, start, rows, isGDP)
             .then(res => res.json())
             .then((data) => {
+                console.log(data);
                 let totalGames = data.games.numFound;
                 start = Math.floor(Math.random() * totalGames);
                 queryStore(searchTerm, filterQuery, facetField, sort, start, rows, isGDP)
