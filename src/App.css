@@ -1,0 +1,28 @@
+.home-page-title {
+    text-align: center;
+}
+
+.inputs {
+    float: left;
+    width: 25%;
+}
+
+.wheel-button {
+    background-color: rgb(255, 165, 0);
+    padding: 15px 15px;
+    font-size: 24px;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.genre-dropdown {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    background-color: rgb(169, 169, 169);
+}
